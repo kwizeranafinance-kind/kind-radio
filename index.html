@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kind Radio · Live electronic sets from Kind Studios NYC</title>
+  <meta name="description" content="Kind Radio: long-format live electronic sets and performances from Kind Studios NYC. 30+ years of Kind heritage.">
+  <meta name="theme-color" content="#13100e">
+  <link rel="icon" type="image/svg+xml" href="shared/brand/kindrecordings_symbol_color.svg">
+  <link rel="apple-touch-icon" href="shared/brand/apple-touch-icon.png">
+  <link rel="canonical" href="https://kwizeranafinance-kind.github.io/kind-radio/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kind Media">
+  <meta property="og:title" content="Kind Radio · Live electronic sets from Kind Studios NYC">
+  <meta property="og:description" content="Long-format live electronic sets from Kind Studios NYC and the Kind Vault archive. 30+ years of Kind Recordings.">
+  <meta property="og:url" content="https://kwizeranafinance-kind.github.io/kind-radio/">
+  <meta property="og:image" content="https://kwizeranafinance-kind.github.io/kind-radio/shared/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Kind Radio boombox player">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Optional display fonts for the boombox (falls back to system fonts) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Righteous&display=swap">
+  <link rel="stylesheet" href="shared/styles.css">
+  <link rel="stylesheet" href="shared/boombox.css">
+
+  <!-- =====================================================
+       STATION THEME: the only CSS you change per station.
+       Clone this folder for another channel and edit:
+         --station-name, --accent, --accent-ink
+       plus the STATION CONFIG block in the <script> at the
+       bottom (name + stream URL) and the page copy.
+       ===================================================== -->
+  <style>
+    :root {
+      --station-name: "Kind Radio";
+      --accent: #f2a541;      /* warm amber, 9.6:1 contrast on the page bg */
+      --accent-ink: #1a1208;  /* text on accent buttons */
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="mark" href="./" aria-label="Kind Radio home">
+        <!-- Kind Recordings symbol (brand kit, color version pops on the dark page) -->
+        <img class="mark-symbol" src="shared/brand/kindrecordings_symbol_color.svg" alt="" width="34" height="50">
+        <h1 class="wordmark" data-station-name>Kind <span class="accent">Radio</span></h1>
+      </a>
+      <p class="tagline">Live electronic sets from Kind Studios NYC since the 90s. Long-format live sets and performances, 30+ years deep.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ================= PLAYER: 70s BOOMBOX =================
+         Pure HTML/CSS/inline SVG (styles in shared/boombox.css).
+         Colors come from the station theme (--accent, --accent-ink),
+         so the other stations reuse this markup unchanged. -->
+    <section class="player boombox" id="player" aria-label="Kind Radio live stream player">
+      <div class="bb-handle" aria-hidden="true">
+        <span class="bb-post bb-post-l"></span><span class="bb-bar"><span class="bb-grip"></span></span><span class="bb-post bb-post-r"></span>
+      </div>
+
+      <div class="bb-body">
+        <!-- Top nameplate -->
+        <div class="bb-plate">
+          <!-- Nameplate: Kind Recordings logo (brand kit) + small station label.
+               Symbol sits in color on a black enamel badge (where it pops);
+               the wordmark uses the dark file on the aluminum body. For a
+               dark-bodied variant set data-body="dark" on .boombox and the
+               light wordmark is shown instead. -->
+          <div class="bb-brand">
+            <span class="bb-badge"><img src="shared/brand/kindrecordings_symbol_color.svg" alt="" width="20" height="30"></span>
+            <img class="bb-wordmark bb-wordmark--dark" src="shared/brand/kindrecordings_text_dark.svg" alt="Kind Recordings" width="172" height="22">
+            <img class="bb-wordmark bb-wordmark--light" src="shared/brand/kindrecordings_text_light.svg" alt="" width="172" height="22">
+            <span class="bb-station">
+              <span class="bb-name" data-station-name>Kind Radio</span>
+              <span class="bb-stripes" aria-hidden="true"><i></i><i></i><i></i></span>
+            </span>
+          </div>
+          <div class="bb-specs">
+            <span class="bb-spec-text">Stereo Radio Cassette · FM / AM</span>
+            <span class="bb-leds">
+              <span class="led led-onair" id="led-onair"><i aria-hidden="true"></i>On air</span>
+              <span class="led led-stereo"><i aria-hidden="true"></i>Stereo</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="bb-panel">
+          <!-- Left speaker -->
+          <div class="bb-spk bb-spk-l" aria-hidden="true">
+            <span class="tweeter"><span class="mesh"></span></span>
+            <span class="woofer"><span class="cone"></span><span class="mesh-depth"></span><span class="mesh"></span><span class="ring-glint"></span></span>
+          </div>
+
+          <div class="bb-center">
+            <!-- Tuning dial / band strip -->
+            <div class="bb-dial">
+              <div class="dial-scale" aria-hidden="true">
+                <span class="band">FM</span><span>88</span><span>92</span><span>96</span><span>100</span><span>104</span><span>108</span><span class="band">MHz</span>
+              </div>
+              <div class="dial-ticks" aria-hidden="true"></div>
+              <span class="dial-needle" aria-hidden="true"></span>
+              <span class="dial-glass" aria-hidden="true"></span>
+              <nav class="dial-stations" aria-label="Kind Media stations">
+                <a href="./" aria-current="page" class="is-active">Kind Radio</a>
+                <!-- Sister stations: swap these spans for links once they launch -->
+                <span class="is-soon" title="Coming soon">Dead &amp; Jam<span class="visually-hidden"> (coming soon)</span></span>
+                <span class="is-soon" title="Coming soon">Worship<span class="visually-hidden"> (coming soon)</span></span>
+              </nav>
+            </div>
+
+            <!-- Cassette deck window -->
+            <div class="bb-deck">
+              <div class="cassette">
+                <span class="screw s1"></span><span class="screw s2"></span><span class="screw s3"></span><span class="screw s4"></span>
+                <div class="cs-label">
+                  <div class="cs-top"><span class="cs-side">A</span><span>Kind Vault</span><span>C-90</span></div>
+                  <!-- Tape label = what LISTEN plays (updated by the player script) -->
+                  <div class="cs-title" id="tape-title">#343 Clover Memories</div>
+                  <div class="cs-window">
+                    <span class="pack pack-l"></span><span class="pack pack-r"></span>
+                    <svg class="reel reel-l" viewBox="-20 -20 40 40" aria-hidden="true"><use href="#bb-hub"/></svg>
+                    <svg class="reel reel-r" viewBox="-20 -20 40 40" aria-hidden="true"><use href="#bb-hub"/></svg>
+                  </div>
+                </div>
+                <div class="cs-foot"><i></i><i></i><i></i><i></i></div>
+              </div>
+              <span class="glass" aria-hidden="true"></span>
+            </div>
+            <p class="sr-only" id="tape-sr">On air now: Kindradio sessions: DC_10</p>
+
+            <!-- VU meters (decorative) -->
+            <div class="bb-vu" aria-hidden="true">
+              <span class="vu-wrap"><svg class="vu vu-l" viewBox="0 0 100 58"><use href="#bb-vu"/><g class="needle"><line x1="50" y1="54" x2="50" y2="12"/></g><text x="7" y="52">L</text></svg><span class="vu-glass"></span></span>
+              <span class="vu-wrap"><svg class="vu vu-r" viewBox="0 0 100 58"><use href="#bb-vu"/><g class="needle"><line x1="50" y1="54" x2="50" y2="12"/></g><text x="7" y="52">R</text></svg><span class="vu-glass"></span></span>
+            </div>
+          </div>
+
+          <!-- Right speaker -->
+          <div class="bb-spk bb-spk-r" aria-hidden="true">
+            <span class="tweeter"><span class="mesh"></span></span>
+            <span class="woofer"><span class="cone"></span><span class="mesh-depth"></span><span class="mesh"></span><span class="ring-glint"></span></span>
+          </div>
+        </div>
+
+        <!-- Bottom strip: decorative knobs around the piano-key transport -->
+        <div class="bb-controls">
+        <div class="bb-knob" aria-hidden="true" style="--knob-angle:-35deg"><span class="dial-knob"></span><span>Volume</span></div>
+        <div class="bb-keys" role="group" aria-label="Player controls">
+          <button class="key key-small" id="vol-down" type="button" aria-label="Volume down"><span aria-hidden="true">Vol</span><b aria-hidden="true">−</b></button>
+          <button class="key key-small" id="stop" type="button" aria-label="Stop"><span aria-hidden="true">Stop</span><b aria-hidden="true">■</b></button>
+          <button class="key key-play listen-btn" id="listen" type="button" aria-controls="stream" aria-pressed="false">
+            <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+            <span class="label">Listen Live</span>
+          </button>
+          <button class="key key-small" id="vol-up" type="button" aria-label="Volume up"><span aria-hidden="true">Vol</span><b aria-hidden="true">+</b></button>
+        </div>
+        <div class="bb-knob" aria-hidden="true" style="--knob-angle:50deg"><span class="dial-knob"></span><span>Tuning</span></div>
+        </div>
+        <p class="stream-status" id="stream-status" role="status" aria-live="polite"></p>
+      </div>
+      <!-- Rubber feet, contact shadow and a shelf to sit on (decorative) -->
+      <span class="bb-foot bb-foot-l" aria-hidden="true"></span><span class="bb-foot bb-foot-r" aria-hidden="true"></span>
+      <div class="bb-shelf" aria-hidden="true"></div>
+
+      <!-- Kind Vault player: Mixcloud's official widget, injected on first
+           LISTEN press and driven by the boombox keys. -->
+      <div class="vault-player" id="vault-player" hidden>
+        <p class="vault-now"><span class="vault-label">Now playing from the Kind Vault</span> <a id="vault-open" href="https://www.mixcloud.com/kindrecordings/" rel="noopener">Open on Mixcloud ↗</a></p>
+      </div>
+
+      <!-- Live-stream audio element: used only when STATION.streamUrl is set.
+           Until then LISTEN plays the Kind Vault queue through Mixcloud's
+           official widget (#vault-player below). -->
+      <audio id="stream" preload="none"></audio>
+      <noscript><p class="bb-noscript"><a href="https://www.mixcloud.com/kindrecordings/">Listen to Kind Vault sets on Mixcloud</a></p></noscript>
+
+      <!-- Shared SVG parts: cassette hub + VU meter face -->
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+          <g id="bb-hub">
+            <circle r="17" fill="#f1ece0"/>
+            <circle r="17" fill="none" stroke="#bfb7a6" stroke-width="1.2"/>
+            <circle r="8.5" fill="#1b1714"/>
+            <g fill="#f1ece0">
+              <rect x="-1.6" y="-9" width="3.2" height="4" rx=".6"/>
+              <rect x="-1.6" y="-9" width="3.2" height="4" rx=".6" transform="rotate(60)"/>
+              <rect x="-1.6" y="-9" width="3.2" height="4" rx=".6" transform="rotate(120)"/>
+              <rect x="-1.6" y="-9" width="3.2" height="4" rx=".6" transform="rotate(180)"/>
+              <rect x="-1.6" y="-9" width="3.2" height="4" rx=".6" transform="rotate(240)"/>
+              <rect x="-1.6" y="-9" width="3.2" height="4" rx=".6" transform="rotate(300)"/>
+            </g>
+            <circle cx="0" cy="-13" r="1.8" fill="#bfb7a6"/>
+            <circle cx="11.3" cy="6.5" r="1.8" fill="#bfb7a6"/>
+            <circle cx="-11.3" cy="6.5" r="1.8" fill="#bfb7a6"/>
+          </g>
+          <g id="bb-vu">
+            <rect x="1" y="1" width="98" height="56" rx="5" fill="#efe5c8"/>
+            <path d="M14 40 A40 40 0 0 1 86 40" fill="none" stroke="#2b2620" stroke-width="1.2"/>
+            <path d="M70 21.5 A40 40 0 0 1 86 40" fill="none" stroke="var(--accent)" stroke-width="4"/>
+            <g stroke="#2b2620" stroke-width="1">
+              <line x1="18" y1="34" x2="21" y2="36"/><line x1="27" y1="24" x2="29" y2="27"/>
+              <line x1="38" y1="18" x2="39" y2="21.5"/><line x1="50" y1="16" x2="50" y2="19.5"/>
+              <line x1="62" y1="18" x2="61" y2="21.5"/><line x1="73" y1="24" x2="71" y2="27"/>
+            </g>
+            <text x="93" y="52" text-anchor="end" class="vu-word">VU</text>
+            <circle cx="50" cy="54" r="3.5" fill="#2b2620"/>
+          </g>
+        </defs>
+      </svg>
+    </section>
+
+    <!-- ================= FEATURED SET (Mixcloud embed) =================
+         Other artists' sets are played ONLY through Mixcloud's official
+         widget iframe. Mixcloud handles licensing/royalties; we never
+         re-stream their audio. Content is filled in by the FEATURED_SETS
+         schedule in the script at the bottom; the static markup below is
+         the no-JS / fallback version of the first entry. -->
+    <section class="block featured" id="featured" aria-labelledby="featured-h">
+      <div class="block-head">
+        <h2 id="featured-h">Featured set</h2>
+      </div>
+
+      <div class="featured-card">
+        <div class="featured-top">
+          <span class="pill" id="fs-status">Recently featured</span>
+          <span class="fs-when"><span id="fs-when-label">Featured</span> <time id="fs-when" datetime="2026-10-10T21:00:00-04:00">Sat Oct 10, 9:00 PM ET</time></span>
+        </div>
+        <h3 class="fs-title" id="fs-title">RA.805 Grand River</h3>
+        <p class="fs-credit" id="fs-credit">
+          Mix by Grand River · via <a href="https://www.mixcloud.com/residentadvisor/" rel="noopener">Resident Advisor on Mixcloud</a>
+        </p>
+
+        <div class="embed" id="fs-embed" data-state="fallback">
+          <!-- Fallback card: visible until the Mixcloud iframe loads,
+               and stays if it can't (offline, blocked, no JS). -->
+          <a class="embed-fallback" id="fs-fallback" href="https://www.mixcloud.com/residentadvisor/ra805/" rel="noopener">
+            <span class="mc-play" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+            </span>
+            <span class="fb-text">
+              <strong id="fs-fb-title">RA.805 Grand River</strong>
+              <span id="fs-fb-sub">Listen on Mixcloud ↗</span>
+            </span>
+            <span class="fb-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          </a>
+          <!-- iframe is injected by JS (no autoplay param, lazy-loaded) -->
+        </div>
+
+        <p class="fs-note">
+          Plays via Mixcloud. Tap play to listen.
+          <a id="fs-open" href="https://www.mixcloud.com/residentadvisor/ra805/" rel="noopener">Open on Mixcloud ↗</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= UPCOMING (real bookings only) ================= -->
+    <section class="block" aria-labelledby="upcoming-h">
+      <div class="block-head">
+        <h2 id="upcoming-h">Upcoming shows</h2>
+        <span class="note">Sundays on Kind Radio</span>
+      </div>
+      <ul class="upcoming">
+        <li>
+          <span class="when"><time datetime="2026-10-18">Sun · Oct 18</time></span>
+          <span class="title">Kind Vault #343: Clover Memories</span>
+          <span class="meta">InvisibleFriend, studio 3 table mix</span>
+        </li>
+        <li>
+          <span class="when"><time datetime="2026-10-25">Sun · Oct 25</time></span>
+          <span class="title">Kind Vault #373: Wax Tribe</span>
+          <span class="meta">12th anniversary · InvisibleFriend at Kind Studio, 31 Oct 2014</span>
+        </li>
+        <li>
+          <span class="when"><time datetime="2026-11-01">Sun · Nov 1</time></span>
+          <span class="title">Kindradio alumni guest</span>
+          <span class="meta">The first returning Kindradio guest. Name announced soon.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ================= OTHER STATIONS ================= -->
+    <section class="block" aria-labelledby="stations-h">
+      <div class="block-head">
+        <h2 id="stations-h">Other Kind Media stations</h2>
+      </div>
+      <div class="stations">
+        <!-- Sister stations: turn each card back into an <a href> once it launches -->
+        <div class="station-card is-soon" style="--card-accent:#ef7d6d">
+          <span class="dot" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM12 2v20M13 8l-4 4h6l-4 4"/></svg>
+          </span>
+          <span><strong>Grateful Dead &amp; Jam Band Live</strong><span class="sub">30 years of live recordings</span></span>
+          <span class="soon-badge">Coming soon</span>
+        </div>
+        <div class="station-card is-soon" style="--card-accent:#8fb8ef">
+          <span class="dot" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 3v18M6 9h12"/></svg>
+          </span>
+          <span><strong>Worship Channel</strong><span class="sub">Worship &amp; Christian music</span></span>
+          <span class="soon-badge">Coming soon</span>
+        </div>
+      </div>
+      <p class="hub-link is-soon">Kind Media, all stations <span class="soon-badge">Coming soon</span></p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav aria-label="Elsewhere">
+        <a href="https://www.mixcloud.com/kindrecordings/" rel="noopener">Mixcloud</a>
+        <a href="https://invisiblefriendnyc.bandcamp.com/" rel="noopener">Bandcamp</a>
+      </nav>
+      <span>© Kind Media · Kind Recordings, NYC</span>
+    </div>
+  </footer>
+
+  <script src="https://widget.mixcloud.com/media/js/widgetApi.js" defer></script>
+  <script>
+    /* ---------- STATION CONFIG (edit per station) ----------
+       streamUrl: set to the live Icecast/Shoutcast URL once it exists.
+         While it is "", LISTEN LIVE plays the vaultQueue (Kind Vault sets)
+         through Mixcloud's official widget, in order, looping.
+       vaultQueue: Mixcloud paths on mixcloud.com/kindrecordings. */
+    const STATION = {
+      name: "Kind Radio",
+      streamUrl: "",
+      vaultQueue: [
+        { path: "/kindrecordings/kind-vault-343-clover-memories-invisible-friend-studio-3-table-mix-kind-recordings/",
+          title: "Kind Vault #343: Clover Memories" },
+        { path: "/kindrecordings/the-kind-vault-session-373-podcast-wax-tribe-invisible-friend-kind-studio-31-10-2014/",
+          title: "Kind Vault #373: Wax Tribe" }
+      ]
+    };
+
+    /* ---------- FEATURED SETS (Mixcloud) ----------
+       Real bookings only. With nothing current or upcoming, the most recent
+       one shows as "Recently featured"; with an empty list the section hides.
+       start/end: ISO 8601 with the ET offset (-04:00 EDT, -05:00 EST).
+       mixcloudPath: the set's path on mixcloud.com ("" = not announced yet).
+       artistUrl: the artist's (or publishing channel's) Mixcloud page.
+       via: optional, name of the channel that published the set. */
+    const FEATURED_SETS = [
+      {
+        /* RA.805, duration 3568 s (59:28), per api.mixcloud.com; title confirmed via oEmbed */
+        start: "2026-10-10T21:00:00-04:00",
+        end:   "2026-10-10T21:59:28-04:00",
+        mixcloudPath: "/residentadvisor/ra805/",
+        title: "RA.805 Grand River",
+        artist: "Grand River",
+        via: "Resident Advisor",
+        artistUrl: "https://www.mixcloud.com/residentadvisor/"  /* no verified artist Mixcloud page */
+      }
+    ];
+
+    (function () {
+      const $ = (id) => document.getElementById(id);
+      const now = Date.now();
+      const sets = FEATURED_SETS
+        .map((s) => Object.assign({}, s, { s: Date.parse(s.start), e: Date.parse(s.end) }))
+        .sort((a, b) => a.s - b.s);
+
+      let pick = sets.find((x) => x.s <= now && now < x.e), status = "Now featuring";
+      if (!pick) { pick = sets.find((x) => x.s > now); status = "Coming up"; }
+      if (!pick) { pick = sets[sets.length - 1]; status = "Recently featured"; }
+      if (!pick) { $("featured").hidden = true; return; }
+
+      const whenFmt = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/New_York", weekday: "short", hour: "numeric", minute: "2-digit"
+      });
+      // "Sat 9:00 PM" (strip the comma some engines insert)
+      const fmt = status === "Recently featured"
+        ? new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })
+        : whenFmt;
+      $("fs-when").textContent = fmt.format(pick.s).replace(/,(?= \d+:)/, ",") + " ET";
+      $("fs-when-label").textContent = status === "Recently featured" ? "Featured" : status === "Now featuring" ? "Live since" : "Scheduled";
+      $("fs-when").setAttribute("datetime", pick.start);
+      $("fs-status").textContent = status;
+      $("featured").classList.toggle("is-live", status === "Now featuring");
+      $("fs-title").textContent = pick.title;
+
+      const credit = $("fs-credit");
+      credit.textContent = "Mix by " + pick.artist;
+      if (pick.artistUrl) {
+        credit.append(" · ");
+        const a = document.createElement("a");
+        a.href = pick.artistUrl; a.rel = "noopener";
+        a.textContent = pick.via ? pick.via + " on Mixcloud" : pick.artist + " on Mixcloud";
+        if (pick.via) credit.append("via ");
+        credit.append(a);
+      }
+
+      const setUrl = pick.mixcloudPath ? "https://www.mixcloud.com" + pick.mixcloudPath
+                                      : (pick.artistUrl || "https://www.mixcloud.com/kindrecordings/");
+      $("fs-fallback").href = setUrl;
+      $("fs-open").href = setUrl;
+      $("fs-fb-title").textContent = pick.title;
+      $("fs-fb-sub").textContent = pick.mixcloudPath ? "Listen on Mixcloud ↗" : "Details coming soon";
+
+      if (!pick.mixcloudPath) {
+        $("fs-open").hidden = true;
+        $("fs-embed").classList.add("is-tba");
+        $("fs-open").parentNode.firstChild.textContent = "The Mixcloud player appears here once the set is announced. ";
+        return;
+      }
+
+      // Mixcloud's official widget. No autoplay parameter; "autoplay" is
+      // also left out of the iframe permissions, so it can only play on tap.
+      const iframe = document.createElement("iframe");
+      iframe.title = "Mixcloud player: " + pick.title;
+      iframe.loading = "lazy";
+      iframe.allow = "encrypted-media; fullscreen";
+      iframe.src = "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&light=0&feed=" +
+                   encodeURIComponent(pick.mixcloudPath);
+      const box = $("fs-embed");
+      // Keep the fallback card up until the widget reports it is ready.
+      // (The iframe "load" event also fires for browser error pages, so we
+      // wait for Mixcloud's own {"type":"ready","mixcloud":"playerWidget"}
+      // postMessage instead.) If it never arrives (offline / blocked),
+      // the iframe is removed and the fallback card stays as the UI.
+      const giveUp = setTimeout(function () {
+        window.removeEventListener("message", onMsg);
+        iframe.remove(); box.dataset.state = "fallback";
+      }, 12000);
+      function onMsg(e) {
+        if (e.source !== iframe.contentWindow || !/\.mixcloud\.com$/.test(new URL(e.origin).hostname)) return;
+        let d = e.data;
+        try { if (typeof d === "string") d = JSON.parse(d); } catch (_) { return; }
+        if (d && d.mixcloud === "playerWidget" && d.type === "ready") {
+          clearTimeout(giveUp);
+          window.removeEventListener("message", onMsg);
+          box.dataset.state = "loaded";
+        }
+      }
+      window.addEventListener("message", onMsg);
+      box.appendChild(iframe);
+      box.dataset.state = "loading";
+    })();
+
+    /* ---------- Boombox player logic (no frameworks) ----------
+       Two sources behind the same keys:
+         - STATION.streamUrl set  -> live stream in the <audio> element
+         - STATION.streamUrl ""   -> Kind Vault queue via the Mixcloud widget
+       Neither path ever shows an error to listeners. */
+    (function () {
+      const player = document.getElementById("player");
+      const btn = document.getElementById("listen");
+      const label = btn.querySelector(".label");
+      const status = document.getElementById("stream-status");
+      const useStream = !!STATION.streamUrl;
+      let volume = 0.8;
+
+      function setPlaying(on) {
+        player.classList.toggle("is-playing", on);
+        btn.setAttribute("aria-pressed", String(on));
+        label.textContent = on ? "Pause" : "Listen Live";
+      }
+
+      /* ---- Source A: live stream ---- */
+      function streamSource() {
+        const audio = document.getElementById("stream");
+        audio.src = STATION.streamUrl;
+        audio.volume = volume;
+        audio.addEventListener("playing", function () { status.textContent = ""; setPlaying(true); });
+        audio.addEventListener("pause", function () { setPlaying(false); });
+        audio.addEventListener("error", function () { setPlaying(false); status.textContent = "The live stream is taking a break. Please try again shortly."; });
+        return {
+          toggle: function () {
+            if (audio.paused) { status.textContent = "Tuning in…"; audio.load(); audio.play().catch(function () {}); }
+            else audio.pause();
+          },
+          stop: function () { audio.pause(); setPlaying(false); },
+          setVolume: function (v) { audio.volume = v; }
+        };
+      }
+
+      /* ---- Source B: Kind Vault via Mixcloud's official widget ---- */
+      function vaultSource() {
+        const box = document.getElementById("vault-player");
+        const open = document.getElementById("vault-open");
+        const q = STATION.vaultQueue;
+        let i = 0, iframe = null, widget = null, wantPlay = false;
+
+        function show(idx) {
+          open.href = "https://www.mixcloud.com" + q[idx].path;
+          box.querySelector(".vault-label").textContent = "Now playing: " + q[idx].title;
+          document.getElementById("tape-title").textContent = q[idx].title.replace(/^Kind Vault /, "").replace(":", "");
+        }
+        function src(idx, autoplay) {
+          return "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&light=0" +
+                 (autoplay ? "&autoplay=1" : "") + "&feed=" + encodeURIComponent(q[idx].path);
+        }
+        function hint() {
+          // Some browsers (e.g. iOS Safari) only let the widget start from a tap inside it.
+          setTimeout(function () {
+            if (wantPlay && !player.classList.contains("is-playing"))
+              status.textContent = "Tap ▶ in the Mixcloud player below to start.";
+          }, 4000);
+        }
+        function create() {
+          iframe = document.createElement("iframe");
+          iframe.title = "Mixcloud player: Kind Vault";
+          iframe.allow = "autoplay; encrypted-media";   // lets this tap start playback
+          iframe.src = src(i, true);
+          box.appendChild(iframe);
+          box.hidden = false;
+          show(i);
+          if (window.Mixcloud && Mixcloud.PlayerWidget) {
+            widget = Mixcloud.PlayerWidget(iframe);
+            widget.ready.then(function () {
+              widget.setVolume(volume);
+              widget.events.play.on(function () { status.textContent = ""; setPlaying(true); });
+              widget.events.pause.on(function () { setPlaying(false); });
+              widget.events.ended.on(function () {          // next set in the queue
+                i = (i + 1) % q.length; show(i);
+                widget.load(q[i].path, true).then(function () { widget.setVolume(volume); });
+              });
+              widget.events.error.on(function () {
+                i = (i + 1) % q.length; show(i); widget.load(q[i].path, true);
+              });
+            });
+          } else {
+            setPlaying(true);   // API script blocked: the widget still plays on its own
+          }
+        }
+        return {
+          toggle: function () {
+            if (!iframe) { wantPlay = true; status.textContent = "Tuning in…"; create(); hint(); return; }
+            if (!widget) return;
+            widget.getIsPaused().then(function (paused) {
+              wantPlay = paused;
+              if (paused) { status.textContent = "Tuning in…"; widget.play(); hint(); } else widget.pause();
+            });
+          },
+          stop: function () {
+            wantPlay = false;
+            if (widget) { widget.pause(); widget.seek(0); }
+            setPlaying(false);
+          },
+          setVolume: function (v) { if (widget) widget.setVolume(v); }
+        };
+      }
+
+      const source = useStream ? streamSource() : vaultSource();
+
+      btn.addEventListener("click", function () { source.toggle(); });
+      document.getElementById("stop").addEventListener("click", function () {
+        source.stop(); status.textContent = "Stopped.";
+      });
+      function nudge(d) {
+        volume = Math.min(1, Math.max(0, Math.round((volume + d) * 10) / 10));
+        source.setVolume(volume);
+        status.textContent = "Volume " + Math.round(volume * 100) + "%";
+      }
+      document.getElementById("vol-down").addEventListener("click", function () { nudge(-0.1); });
+      document.getElementById("vol-up").addEventListener("click", function () { nudge(0.1); });
+    })();
+  </script>
+</body>
+</html>
