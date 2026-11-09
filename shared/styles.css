@@ -134,7 +134,9 @@ section.block { margin: 56px 0; }
 }
 .station-card .dot svg { width: 22px; height: 22px; }
 .station-card strong { display: block; font-size: 1.1rem; }
-.station-card span.sub { display: block; color: var(--muted); font-size: 0.92rem; }
+.station-card span.sub { display: block; color: var(--muted); font-size: 0.92rem; line-height: 1.45; margin-top: 4px; }
+.station-card .card-copy { flex: 1; min-width: 0; }
+.station-card .soon-badge, .station-card .arrow { flex: none; align-self: flex-start; margin-top: 2px; }
 .station-card .arrow { margin-left: auto; color: var(--muted); font-size: 1.3rem; }
 .hub-link { display: inline-block; margin-top: 18px; font-weight: 700; }
 
