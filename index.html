@@ -14,10 +14,10 @@
   <meta property="og:title" content="Kind Radio · Live electronic sets from Kind Studios NYC">
   <meta property="og:description" content="Long-format live electronic sets from Kind Studios NYC and the Kind Vault archive. 30+ years of Kind Recordings.">
   <meta property="og:url" content="https://kwizeranafinance-kind.github.io/kind-radio/">
-  <meta property="og:image" content="https://kwizeranafinance-kind.github.io/kind-radio/shared/og-image.png">
+  <meta property="og:image" content="https://kwizeranafinance-kind.github.io/kind-radio/shared/og-kind-radio.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="The Kind Radio boombox player">
+  <meta property="og:image:alt" content="Hand-painted Kind Radio sign on a corrugated metal wall">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,6 +40,15 @@
       --accent: #f2a541;      /* warm amber, 9.6:1 contrast on the page bg */
       --accent-ink: #1a1208;  /* text on accent buttons */
     }
+    .archive-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+    .archive-list li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;padding:12px 16px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius)}
+    .archive-list a{color:var(--text);font-weight:600;text-decoration:none}
+    .archive-list a:hover{color:var(--accent);text-decoration:underline}
+    .archive-list .meta{color:var(--muted);font-size:.9rem}
+    .photo-link{display:block;position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
+    .photo-link img{display:block;width:100%;height:auto}
+    .photo-link .photo-cap{position:absolute;left:0;right:0;bottom:0;padding:14px 18px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;font-size:1.05rem}
+    .photo-link:hover .photo-cap strong{color:var(--accent)}
   </style>
 
   <style>
@@ -349,6 +358,27 @@
       </div>
     </section>
 
+    <!-- ================= PAST FEATURES (auto-built from FEATURED_SETS) ================= -->
+    <section class="block" id="archive" aria-labelledby="archive-h">
+      <div class="block-head">
+        <h2 id="archive-h">Past features</h2>
+        <span class="note">Every set we've showcased</span>
+      </div>
+      <ul class="archive-list" id="archive-list">
+        <li><a href="https://www.mixcloud.com/residentadvisor/ra805/" rel="noopener">RA.805 Grand River</a><span class="meta">Oct 10, 2026 · Resident Advisor on Mixcloud</span></li>
+        <li><a href="https://www.youtube.com/watch?v=6h6OfX9bv_I" rel="noopener">Juan Atkins at RADAR, Dekmantel Festival 2026</a><span class="meta">Nov 4, 2026 · Dekmantel on YouTube</span></li>
+      </ul>
+    </section>
+
+    <!-- ================= PHOTO LINK ================= -->
+    <section class="block photo-link-block" aria-label="Kind Radio photo">
+      <a class="photo-link" href="https://kwizeranafinance-kind.github.io/kind-radio/" title="Kind Radio">
+        <img src="shared/kind-radio-photo.jpg" width="1600" height="997" loading="lazy"
+             alt="Hand-painted Kind Radio sign on a corrugated metal wall by the beach">
+        <span class="photo-cap">Talk to me, right here. <strong>Kind Radio</strong> ↗</span>
+      </a>
+    </section>
+
     <!-- ================= UPCOMING (real bookings only) ================= -->
     <section class="block" aria-labelledby="upcoming-h">
       <div class="block-head">
@@ -477,6 +507,26 @@
         artistUrl: "https://www.mixcloud.com/residentadvisor/"
       }
     ];
+
+    /* Past features: every FEATURED_SETS entry whose window has ended, newest first. */
+    (function () {
+      const list = document.getElementById("archive-list"); if (!list) return;
+      const now = Date.now();
+      const past = FEATURED_SETS.filter((x) => Date.parse(x.end) <= now)
+        .sort((a, b) => Date.parse(b.start) - Date.parse(a.start));
+      if (!past.length) { document.getElementById("archive").hidden = true; return; }
+      const df = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", month: "short", day: "numeric", year: "numeric" });
+      list.textContent = "";
+      past.forEach((x) => {
+        const url = x.youtubeId ? "https://www.youtube.com/watch?v=" + encodeURIComponent(x.youtubeId)
+                  : x.mixcloudPath ? "https://www.mixcloud.com" + x.mixcloudPath : (x.url || x.artistUrl);
+        const li = document.createElement("li");
+        const a = document.createElement("a"); a.href = url; a.rel = "noopener"; a.target = "_blank"; a.textContent = x.title;
+        const m = document.createElement("span"); m.className = "meta";
+        m.textContent = df.format(Date.parse(x.start)) + " · " + (x.via || x.artist) + (x.youtubeId ? " on YouTube" : x.mixcloudPath ? " on Mixcloud" : "");
+        li.append(a, m); list.append(li);
+      });
+    })();
 
     (function () {
       const $ = (id) => document.getElementById(id);
